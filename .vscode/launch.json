@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SaintgermainApplication<saintgermain>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "br.com.zup.edu.saintgermain.SaintgermainApplication",
+      "projectName": "saintgermain",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

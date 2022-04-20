@@ -8,6 +8,6 @@ services:
       - 5432:5432
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: leito
+      POSTGRES_DB: mydb
 volumes:
   postgres-volume:
