@@ -9,8 +9,18 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.OptimisticLockType;
+import org.hibernate.annotations.OptimisticLocking;
+
+import br.com.zup.edu.saintgermain.exceptions.LeitoNaoLivreException;
 
 @Entity
+@Table(name = "leitos")
+@OptimisticLocking(type = OptimisticLockType.ALL)
+@DynamicUpdate
 public class Leito {
 
     @Id
@@ -25,10 +35,10 @@ public class Leito {
     private StatusOcupacao status;
 
     @Column(nullable = false)
-    private LocalDateTime criadoEm;
+    private LocalDateTime criadoEm = LocalDateTime.now();
 
     @Column(nullable = false)
-    private LocalDateTime atualizadoEm;
+    private LocalDateTime atualizadoEm = LocalDateTime.now();
 
     /**
      * @deprecated Construtor de uso exclusivo do Hibernate
@@ -41,8 +51,21 @@ public class Leito {
         this.status = StatusOcupacao.LIVRE;
     }
 
+    public void reservar() {
+        if (!isLivre()) {
+            throw new LeitoNaoLivreException("O leito não está livre para ser reservado.");
+        }
+
+        atualizadoEm = LocalDateTime.now();
+        status = StatusOcupacao.OCUPADO;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public boolean isLivre() {
+        return status.equals(StatusOcupacao.LIVRE);
     }
 
 }
