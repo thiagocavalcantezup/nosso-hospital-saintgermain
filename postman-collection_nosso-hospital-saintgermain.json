@@ -1,0 +1,1 @@
+{"info":{"name":"nosso-hospital-saintgermain","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"Reservar Leito","request":{"method":"PATCH","url":{"raw":"http://localhost:8080/api/leitos/2","protocol":"http","host":["localhost:8080"],"path":["api","leitos","2"],"port":"8080"}}}]}
